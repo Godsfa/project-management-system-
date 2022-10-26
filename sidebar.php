@@ -1,12 +1,22 @@
+<?php 
+     
+      include('verify.php');
+?>
+   <?php 
+    $employee_id = $_SESSION['employee_id'];
+    $login_id = $_SESSION['login_id'];
+    ?>
 <div class="page">
         <div>
             <h3><a href="index.php">GODS'FAVOUR <i class="bi bi-house-door-fill" style='color:#d4ab3a;'></i></a></h3>
         <div class="hr"></div>
         </div>
        <div><button class="children"><a href="index.php" id="admin">Task Management<i class="bi bi-list-task icon"></i></a></button></div> 
-        
-       <div><button class="children"><a href="administation.php">Administration<i class="bi bi-person-fill icon"></i></a></button></div>
-
+       
+       <?php if($login_id == 1){ ?>
+        <div><button class="children"><a href="administation.php">Administration<i class="bi bi-person-fill icon"></i></a></button></div>
+        <?php } ?>
+            
        <div><button class="children"><a href="logout.php">Log out<i class="bi bi-box-arrow-right icon"></i></a></button></div>
      
     </div>
