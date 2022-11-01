@@ -2,18 +2,27 @@
       // connection to database
       include('config/db_conn.php');
       include('verify.php');
-    
-$employee_id = $_SESSION['employee_id'];
-
-$login_id = $_SESSION['login_id'];
 ?>
-
+   <?php 
+    $employee_id = $_SESSION['employee_id'];
+    $login_id = $_SESSION['login_id'];
+    ?>
 <html>
     <head>
         <title>Tasks Manager System</title>
        <link rel="stylesheet" href="css/general_style.css">
        <!-- CSS only -->
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+       <style>
+        .login{
+            text-decoration: none;
+            width: 20%;
+            height: 75%;
+        
+            position: relative;
+            bottom: 30%;
+        }
+       </style>
        
     </head>
 
@@ -61,7 +70,7 @@ $login_id = $_SESSION['login_id'];
                             $sql = "SELECT tbl_tasks.*, tbl_admin.*
                             FROM tbl_tasks
                             INNER JOIN tbl_admin ON(tbl_tasks.employee_id=tbl_admin.employee_id) 
-                            WHERE tbl_tasks.task_id = $employee_id
+                            WHERE tbl_tasks.employee_id = $employee_id
                             ";
                         }
                        $res = mysqli_query($conn, $sql);

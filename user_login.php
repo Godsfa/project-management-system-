@@ -1,8 +1,6 @@
 <?php 
 include('config/db_conn.php');
-
 ?>
-
 <html>
     <head>
         <title>User And Registration</title>
@@ -43,12 +41,12 @@ a{
         <div class="row">
         <div class="col-md-6 login-left">
         
-        <form action="user_login.php" method="POST">
+        <form action="verify.php" method="POST">
         <div class="form-group">
         <label for="">ID</label>
         <input type="text" name="employee_id" class="form-control" required>                  
         </div>
-
+        
         <div class="form-group">
         <label for="">Username</label>
         <input type="text" name="username" class="form-control" required>                  
@@ -67,39 +65,3 @@ a{
     </div>
 </body>
 </html>
-
-<?php
-
-//login
-    session_start();
-
-    if(isset($_POST['submit'])){
-
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $id = $_POST['employee_id'];
-
-        $sql = "SELECT * FROM tbl_admin 
-            WHERE
-            username = '$username' && password = '$password' && employee_id = '$id'
-        ";
-
-        $result = mysqli_query($conn, $sql);
-        while($row = mysqli_fetch_assoc($result)){ 
-            $employee_id = $row['employee_id'] ;                         
-
-
-        $num = mysqli_num_rows($result);
-
-        if($num == 1){
-            $_SESSION['login'] = "$id";
-            header("location:index.php");
-           
-        }else{
-        echo '<script>
-        alert("Either Password Or Username Is inccorect")
-        window.location.href="login.php"
-        </script>';
-        }
-    }}
-?>
